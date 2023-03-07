@@ -1,0 +1,21 @@
+
+import string
+
+
+
+cipher = ""
+with open("cipher.txt", "r") as file:
+    cipher = file.read().strip()
+
+def fun(n):
+    return int((n*(n+1)*(n+2))//6)
+
+flag = ''
+for i in cipher.split(','):
+    for c in string.printable:
+        if int(i) == fun(ord(c)*1072222332616602570012871257201):
+            flag += c
+            break
+print(flag)
+
+#Flag{71a9478208a42010790de3868ab99cbb}

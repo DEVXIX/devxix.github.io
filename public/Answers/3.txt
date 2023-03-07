@@ -1,0 +1,81 @@
+
+from Cryptodome.Cipher import AES
+from Cryptodome.Util.number import long_to_bytes, bytes_to_long
+from pwn import xor
+
+def Add(input):
+    if input < 'N':
+        return ord(input) + 0xb5
+    else:
+        return ord(input) + 0xb1
+
+
+def InRange(key):
+    for c in key:
+        if c < '@' or c > 'Z':
+            return False
+    return True
+
+
+def Total(key):
+    total = 0xf7
+    for i in range(1, len(key)):
+        total = total + (Add(key[i]) - i) + 0xf7
+    return total
+
+
+def check(key):
+    if len(key) != 0x20:
+        return "wrong key length", 0
+
+    if not InRange(key):
+        return "char out of range", 0
+
+    total = Total(key)
+
+    if total % 0xf8 != Add(key[0]) or total % 0xf8 != 0xf7:
+        return "not valid", 0
+
+    return "valid", 1
+
+# Given parameters
+KEY = "42424242424242424242424242424242424242424242424242424242445a5a5a"
+s = "405c723d7f70b78c91405ee9a375b6b49778f0bf"
+r = "d02a3046c88510f2ce04d4fa55d3b31f9b610123"
+iv0 = bytes.fromhex("c8282b2d103ba3aafe923071aa705b9d")
+cipher0 = bytes.fromhex("6a1ca86b90e8b5502a64c864aa1c894e")
+tag0 = bytes.fromhex("56c35b3102510b44c860bab0308ed650")
+iv1 = bytes.fromhex("c8282b2d103ba3aafe923071aa705b9d")
+cipher1 = bytes.fromhex("6a1ca86b90e8b5502a64c864aa1c894f")
+tag1 = bytes.fromhex("42eadcbda10be0a8a8700a3a8b91c180")
+iv2 = bytes.fromhex("c8282b2d103ba3aafe923071aa705b9d")
+cipher2 = bytes.fromhex("0d75de0eb085d0705e0cad44cc70e828")
+tag2 = bytes.fromhex("d725acaff09aeee36be75b82ef97e4c1")
+lmao = b"give me the flag"
+for i in range(64, 91):
+    for j in range(64, 91):
+        for k in range(64, 91):
+            for l in range(64, 91):
+                KEY = KEY[:28] + chr(i) + chr(j) + chr(k) + chr(l)
+                if check(KEY)[1]:
+                    # Compute the tag and cipher for lmao
+                    nonce1 = iv1[:8]
+                    nonce2 = iv2[:8]
+                    key_bytes = bytes.fromhex(KEY)
+                    cipher_obj1 = AES.new(key_bytes, AES.MODE_GCM, nonce=nonce1)
+                    cipher_obj2 = AES.new(key_bytes, AES.MODE_GCM, nonce=nonce2)
+                    cipher_lmao = xor(lmao, cipher_obj1.encrypt(m1))
+                    tag_lmao = cipher_obj1.digest()
+
+                    # Decrypt the cipher and obtain the plaintext
+                    tag = xor(xor(tag2, tag0), tag1)
+                    cipher = xor(cipher0, cipher_lmao)
+                    cipher_obj0 = AES.new(key_bytes, AES.MODE_GCM, nonce=nonce0)
+                    plaintext = cipher_obj0.decrypt_and_verify(cipher, tag)
+
+                    # Print the flag and exit
+                    print(plaintext.decode())
+                    exit()
+
+#Using the properties above, the decryption of the new cipher using iv0, nonce0 and the new tag will be "give me the flag", and so we get the flag
+#Flag{6cJ0GJjeW8zAMpKiD6OvNomA2X0zG2Vcj2S_KD7g2SdMdjZQUvof6C2OP6Cc87g1X0LJ1A2PWsWV9YPThBPxsEyK5QvkaY5meNRp}

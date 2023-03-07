@@ -1,0 +1,8 @@
+
+Open the mem file on Notepad++ and search for Flag{
+
+
+You will find the answer
+
+#Flag{H3r3's_7h3_100-Ch4ract3r_Fl4g_7h4t_Y0u_W3r3_L00king_F0r,_W3ll_D0n3!}
+

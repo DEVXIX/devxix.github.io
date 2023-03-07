@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  .console {
+    background-color: #000;
+    color: #fff;
+    font-family: monospace;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .console-header {
+    display: flex;
+    align-items: center;
+    background-color: #555;
+    height: 30px;
+    padding: 0 10px;
+    -webkit-app-region: drag;
+  }
+  
+  .console-buttons {
+    display: flex;
+  }
+  
+  .console-button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .console-close {
+    background-color: #ff5f57;
+  }
+  
+  .console-minimize {
+    background-color: #ffbd2e;
+  }
+  
+  .console-maximize {
+    background-color: #28c940;
+  }
+  
+  .console-title {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  
+  .console-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 10px;
+    overflow-y: scroll;
+  }
+  
+  .console-text {
+    white-space: pre-wrap;
+  }
+  
+  .console-prompt {
+    display: flex;
+    align-items: center;
+  }
+  
+  .console-username {
+    color: #0f0;
+  }
+  
+  .console-path {
+    color: #33b5e5;
+  }
+  
+  .console-dollarsign {
+    color: #fff;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .console-input {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-size: 1em;
+    width: 100%;
+    -webkit-appearance: none;
+    outline: none;
+  }
+
+ 
+  
+  .console-orange {
+    color: #FFA500; /* orange */
+  }
+  
+  .console-purple  {
+    color: purple;
+  }
+  
+  .console-green {
+    color: green;
+  }
+  
+  .console-purple  {
+    color: purple;
+  }
+  .console-blue {
+    color:aqua;
+  }
+  .console-paren {
+    color:yellow;
+  }
+  .console-bracket {
+    color:red;
+  }

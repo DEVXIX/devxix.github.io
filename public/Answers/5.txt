@@ -1,0 +1,48 @@
+
+SecureUncrackablePassword
+{"session":"admin"}
+
+import os
+from flask import Flask, render_template, jsonify, request, session
+
+app = Flask(__name__, template_folder='templates')
+app.secret_key = b'SecureUncrackablePassword' # Probably should change this...
+
+@app.route('/', methods=['GET'])
+def main():
+    if 'type' not in session:
+        session['type'] = 'user'
+    return render_template('index.html')
+
+@app.route('/admin', methods=['GET'])
+def admin():
+    if 'type' not in session:
+        return 'Invalid session!'
+    else:
+        if session['type'] == 'admin':
+            return render_template('admin.html', initf=os.getenv('INITF'))
+        else:
+            return 'You are not admin!'
+
+@app.route('/api/getResource', methods=['GET'])
+def getResource():
+    if request.args.get('resource'):
+        try:
+            resource = request.args.get('resource')
+            f = open(f'{os.getcwd()}/resources/{resource}', 'r')
+            content = f.read()
+            f.close()
+            return jsonify({
+                'content': content
+            })
+        except Exception as e:
+            print(str(e))
+            return jsonify({
+                'error': str(e),
+                'message': 'Error in main.py!'
+            })
+    else:
+        return jsonify({
+            'error': 'Missing argument.'
+        })
+#Flag{r7jxisQ6raJwQ8fCXRE3HDnjyhj6xIeeZCqEy2pQ-NdMNfENzV1akbyqmJxfhe6Xbj9tGtQWj5ggv8KfEIPimzwkS3Jp4XtcZro}
