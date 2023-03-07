@@ -78,4 +78,5 @@ for i in range(64, 91):
                     exit()
 
 #Using the properties above, the decryption of the new cipher using iv0, nonce0 and the new tag will be "give me the flag", and so we get the flag
+
 #Flag{6cJ0GJjeW8zAMpKiD6OvNomA2X0zG2Vcj2S_KD7g2SdMdjZQUvof6C2OP6Cc87g1X0LJ1A2PWsWV9YPThBPxsEyK5QvkaY5meNRp}

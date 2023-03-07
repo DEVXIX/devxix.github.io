@@ -12,4 +12,5 @@ with open("cipher.txt", "r") as f:
 
 flag = reverse_binary_encoding(padd)
 print(flag)
+
 #Flag{!least_significant_bit!}

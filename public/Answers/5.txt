@@ -45,4 +45,5 @@ def getResource():
         return jsonify({
             'error': 'Missing argument.'
         })
+
 #Flag{r7jxisQ6raJwQ8fCXRE3HDnjyhj6xIeeZCqEy2pQ-NdMNfENzV1akbyqmJxfhe6Xbj9tGtQWj5ggv8KfEIPimzwkS3Jp4XtcZro}

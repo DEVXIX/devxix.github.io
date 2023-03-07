@@ -20,7 +20,7 @@ function parseCommand(command) {
   let args = command.split(' ');
   switch (args[0]) {
     case 'ls':
-      consoleLog('index.html    style.css    script.js');
+      consoleLog('Answers     index.html    style.css    script.js');
       break;
     case 'cd':
       if (args[1] === '..') {
@@ -55,6 +55,14 @@ function parseCommand(command) {
       Built with HTML, CSS, and JavaScript.
       Created by D3VXIX.`);
       break;
+    case 'help':
+      consoleLog(`
+      Type 'ls' to list the files in the current directory.
+      Type 'cd ..' to navigate to the parent directory.
+      Type 'CTF' to see available commands.
+      Type 'CTF [command number]' to view the answer.
+      Type 'about' to view information about the console`
+      );
     case 'clear':
       consoleText.innerHTML = '';
       consoleLog(`Welcome to the console!
@@ -93,9 +101,6 @@ function consoleLog(message) {
 }
 
 consoleLog(`Welcome to the console!
-Type 'ls' to list the files in the current directory.
-Type 'cd ..' to navigate to the parent directory.
-Type 'CTF' to see available commands.
-Type 'CTF [command number]' to view the answer.`);
+Use the command [help] to get additional information about using this console.`);
 
 consolePath.textContent = currentDirectory;
