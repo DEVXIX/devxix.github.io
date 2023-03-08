@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ubuntu Desktop</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+      integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+   
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="windows">
+        <div class="icon-grid">
+          <button type="button" data-window="about">
+            <i class="fa fa-circle-info"></i>
+            <span>About</span>
+          </button>
+        </div>
+        <div class="console window" data-window="console" style="display: none">
+          <header class="console-header">
+            <div></div>
+            <span class="console-title">Console</span>
+            <div class="console-buttons">
+              <div class="console-button console-minimize"></div>
+              <!-- <div class="console-button console-maximize"></div> -->
+              <div class="console-button console-close"></div>
+            </div>
+          </header>
+          <label class="console-body">
+            <div class="console-text"></div>
+            <div class="console-prompt">
+              <span class="console-username">user@dev:</span>
+              <span class="console-path">~</span>
+              <span class="console-dollarsign">$</span>
+              <input type="text" class="console-input" autofocus />
+            </div>
+          </label>
+        </div>
+        <div
+          class="filemanager window"
+          data-window="filemanager"
+          style="display: none"
+        >
+          <header class="console-header">
+            <div></div>
+            <span class="console-title">File Manager</span>
+            <div class="console-buttons">
+              <div class="console-button console-minimize"></div>
+              <!-- <div class="console-button console-maximize"></div> -->
+              <div class="console-button console-close"></div>
+            </div>
+          </header>
+          <div class="content">
+            <div class="file">
+              <div class="icon"><i class="fas fa-folder"></i></div>
+              <div class="name">Answers</div>
+            </div>
+            <div class="file">
+              <div class="icon"><i class="fa fa-file"></i></div>
+              <div class="name">index.html</div>
+            </div>
+            <div class="file">
+              <div class="icon"><i class="fa fa-file"></i></div>
+              <div class="name">script.js</div>
+            </div>
+            <div class="file">
+              <div class="icon"><i class="fa fa-file"></i></div>
+              <div class="name">style.css</div>
+            </div>
+          </div>
+        </div>
+        <div class="about window" data-window="about" style="display: none">
+          <header class="console-header">
+            <div></div>
+            <span class="console-title">About</span>
+            <div class="console-buttons">
+              <div class="console-button console-minimize"></div>
+              <!-- <div class="console-button console-maximize"></div> -->
+              <div class="console-button console-close"></div>
+            </div>
+          </header>
+          <div class="content">
+            <h1>Created by DEVXIX & WildEgo</h1>
+            <ul>
+              <li>
+                <a href="">
+                  <i class="fa-brands fa-github"></i>
+                  <span>DEVXIX</span>
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i class="fa-brands fa-github"></i>
+                  <span>WildEgo</span>
+                </a>
+              </li>
+            </ul>
+            <span class="copyright">&copy; 2023</span>
+          </div>
+        </div>
+        <div class="browser window" data-window="browser" style="display: none">
+          <header class="console-header">
+            <div></div>
+            <span class="console-title">Browser</span>
+            <div class="console-buttons">
+              <div class="console-button console-minimize"></div>
+              <!-- <div class="console-button console-maximize"></div> -->
+              <div class="console-button console-close"></div>
+            </div>
+          </header>
+          <div class="content">
+            <iframe src="https://kawaiifu.com" frameborder="0"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="taskbar">
+        <div class="start-menu">
+          <button type="button" class="start-icon">
+            <i class="fab fa-ubuntu"></i>
+          </button>
+          <ul class="menu-items" style="display: none">
+            <li class="menu-item"><i class="fas fa-user"></i>root</li>
+            <li class="menu-item"><i class="fas fa-cog"></i>System Settings</li>
+            <li class="menu-item">
+              <i class="fas fa-power-off" onclick="powerOff()"></i>Power Off...
+            </li>
+          </ul>
+        </div>
+        <div class="task-icons">
+          <button type="button" class="task-icon" id="browser-button">
+            <i class="fab fa-firefox task-icon-img"></i>
+          </button>
+          <button type="button" class="task-icon" id="fm-button">
+            <i class="fas fa-folder-open task-icon-img"></i>
+          </button>
+          <button type="button" class="task-icon" id="console-button">
+            <i class="fas fa-terminal task-icon-img"></i>
+          </button>
+        </div>
+        <div id="time"></div>
+      </div>
+    </div>
+  </body>
+</html>
