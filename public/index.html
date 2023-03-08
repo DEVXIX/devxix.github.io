@@ -1,12 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>d3vXIX</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <title>Taskbar Example</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <script src="script.js"></script>
+    <script
+  src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+  integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.6.3.min.js"
+  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+  crossorigin="anonymous"></script>
+    <script>
+         function openTerminal() {
+        var consoleElem = document.querySelector(".console");
+        consoleElem.style.display = "block";
+        consoleElem.style.width = "640px";
+        consoleElem.style.height = "480px";
+        var $j = jQuery.noConflict();
+        $j(document).ready(function() {
+         $j(".console").draggable(); 
+});
+        
+      }
+    </script>
   </head>
   <body>
+    <i class="fa fa-info-circle desktop-icon"  aria-hidden="true">About</i>
     <div class="console">
-      <div class="console-header">
+        <div class="console-header">
         <div class="console-buttons">
           <div class="console-button console-close"></div>
           <div class="console-button console-minimize"></div>
@@ -24,7 +56,28 @@
         </div>
       </div>
     </div>
-    <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <div class="taskbar">
+      <div class="start-menu">
+        <i class="fab fa-ubuntu  start-icon"></i>
+        <div class="start-menu-content">
+          <div class="menu-item"><i class="fas fa-user"></i>Guest</div>
+          <div class="menu-item"><i class="fas fa-cog"></i>System Settings</div>
+          <div class="menu-item"><i class="fas fa-power-off"></i>Power Off...</div>
+            </div>
+        
+      </div>
+      <div class="task-icons">
+        <div class="task-icon">
+          <i class="fab fa-firefox task-icon-img"></i>
+        </div>
+        <div class="task-icon">
+          <i class="fas fa-folder-open task-icon-img"></i>
+        </div>
+        <div class="task-icon">
+          <i class="fas fa-terminal task-icon-img" onclick="openTerminal()"></i>
+        </div>
+      </div>
+      <div id="time"></div>
+    </div>
   </body>
 </html>
